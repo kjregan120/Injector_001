@@ -1,0 +1,37 @@
+{
+  "name": "Range Picker Scanner",
+  "description": "Scans pages for date-range elements when View Rates is pressed.",
+  "version": "1.1.0",
+  "manifest_version": 3,
+
+  "action": {
+    "default_title": "Range Picker Scanner"
+  },
+
+  "background": {
+    "service_worker": "bg.js",
+    "type": "module"
+  },
+
+  "permissions": ["activeTab", "scripting"],
+
+  "host_permissions": [
+    "https://disneyworld.disney.go.com/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://disneyworld.disney.go.com/*"],
+      "js": ["listener.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["scan.js"],
+      "matches": ["https://disneyworld.disney.go.com/*"]
+    }
+  ]
+}
